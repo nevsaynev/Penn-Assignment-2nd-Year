@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends CommonActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,21 +16,7 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.welcome_screen);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.action_about) {
-			Toast.makeText(getApplicationContext(), "Unicorn Game! \n(c)2014 Univ of Pennsylvania", Toast.LENGTH_SHORT).show(); 
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+//	
 
 	/*
 	 * This method is called automatically when the user clicks on the button.

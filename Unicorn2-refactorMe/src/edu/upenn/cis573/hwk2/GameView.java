@@ -1,154 +1,173 @@
 package edu.upenn.cis573.hwk2;
 
+import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
+import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+
 public class GameView extends View {
+    private Bitmap image;
+    private ArrayList<Integer> xPoints = new ArrayList<Integer>();
+    private ArrayList<Integer> yPoints = new ArrayList<Integer>();
+    private boolean killed = false;
+    private boolean newUnicorn = true;
+    private int imagePointX = -150;
+    private int imagePointY = 100;
+    private int score = 0;
+    private int yChange = 0;
+    private static final int lineColor = Color.RED;
+    private static final int lineWidth = 10;
+    public long startTime;
+    public long endTime;
 
-	private Stroke stroke = new Stroke(Color.RED, 10);
-	private Image image = new Image();
+    public GameView(Context context) {
+	    super(context);
+	    setBackgroundResource(R.drawable.space);
+	    image = BitmapFactory.decodeResource(getResources(), R.drawable.unicorn);
+	    image = Bitmap.createScaledBitmap(image, 150, 150, false);
+    }
+    
+    public GameView(Context context, AttributeSet attributeSet) {
+    	super(context, attributeSet);
+	    setBackgroundResource(R.drawable.space);
+	    image = BitmapFactory.decodeResource(getResources(), R.drawable.unicorn);
+	    image = Bitmap.createScaledBitmap(image, 150, 150, false);
+    }
+    
+    /*
+     * This method is automatically invoked when the View is displayed.
+     * It is also called after you call "invalidate" on this object.
+     */
+    protected void onDraw(Canvas canvas) {    	
 
-	private boolean killed = false;
-	private boolean newUnicorn = true;
-	private int score = 0;
-  
-
-	private int yChange = 0;
-	
-    private BackgroundDrawingTask backGroundDrawingTask = new BackgroundDrawingTask(image, this);
-
-	public GameView(Context context) {
-		super(context);
-		setBackgroundResource(R.drawable.space);
-		setImage(R.drawable.unicorn);
-
-	}
-
-	public GameView(Context context, AttributeSet attributeSet) {
-		super(context, attributeSet);
-		setBackgroundResource(R.drawable.space);
-		setImage(R.drawable.unicorn);
-	}
-
-	private void setImage(int pic) {
-		image.setImage(BitmapFactory.decodeResource(getResources(), pic));
-		image.setImage(Bitmap.createScaledBitmap(image.getImage(), 150, 150,
-				false));
-	}
-	
-	public void backGroundDraw(){
-		backGroundDrawingTask.execute();
-	}
-
-	/*
-	 * This method is automatically invoked when the View is displayed. It is
-	 * also called after you call "invalidate" on this object.
-	 */
-	protected void onDraw(Canvas canvas) {
-
-		// resets the position of the unicorn if one is killed or reaches the
-		// right edge
-		if (newUnicorn || image.getImagePoint().x >= this.getWidth()) {
-			image.getImagePoint().set(-150, (int) (Math.random() * 200 + 200));
-			yChange = (int) (10 - Math.random() * 20);
-			newUnicorn = false;
-			killed = false;
-		}
+    	// resets the position of the unicorn if one is killed or reaches the right edge
+    	if (newUnicorn || imagePointX >= this.getWidth()) {
+    		imagePointX = -150;
+    		imagePointY = (int)(Math.random() * 200 + 200);
+    		yChange = (int)(10 - Math.random() * 20);
+    		newUnicorn = false;
+    		killed = false;
+    	}
 
 		// show the exploding image when the unicorn is killed
-		if (killed) {
-			setImage(R.drawable.explosion);
-			drawOnCanvas(canvas);
-			newUnicorn = true;
-			setImage(R.drawable.unicorn);
-			try {
-				Thread.sleep(10);
-			} catch (Exception e) {
-			}
-			invalidate();
-			return;
-		}
+    	if (killed) {
+    		Bitmap explode = BitmapFactory.decodeResource(getResources(), R.drawable.explosion);
+    	    explode = Bitmap.createScaledBitmap(explode, 150, 150, false);
+    		canvas.drawBitmap(explode, imagePointX, imagePointY, null);
+    		newUnicorn = true;
+    		try { Thread.sleep(10); } catch (Exception e) { }
+    		invalidate();
+    		return;
+    	}
 
-		drawOnCanvas(canvas);
-
+    	// draws the unicorn at the specified point
+		canvas.drawBitmap(image, imagePointX, imagePointY, null);
+    	
 		// draws the stroke
-		if (stroke.getPoints().size() > 1) {
-			for (int i = 0; i < stroke.getPoints().size() - 1; i++) {
-				Point start = stroke.getPoints().get(i);
-				Point stop = stroke.getPoints().get(i + 1);
-				Paint paint = new Paint();
-				paint.setColor(stroke.getLineColor());
-				paint.setStrokeWidth(stroke.getLineWidth());
-				canvas.drawLine(start.x, start.y, stop.x, stop.y, paint);
-			}
-		}
+    	if (xPoints.size() > 1) {
+    		for (int i = 0; i < xPoints.size()-1; i++) {
+    			int startX = xPoints.get(i);
+    			int stopX = xPoints.get(i+1);
+    			int startY = yPoints.get(i);
+    			int stopY = yPoints.get(i+1);
+    			Paint paint = new Paint();
+    			paint.setColor(lineColor);
+    			paint.setStrokeWidth(lineWidth);
+    			canvas.drawLine(startX, startY, stopX, stopY, paint);
+    		}
+    	}
+    	
+    }
 
-	}
+    /* 
+     * This method is automatically called when the user touches the screen.
+     */
+    public boolean onTouchEvent(MotionEvent event) {
+    	
+    	if (event.getAction() == MotionEvent.ACTION_DOWN) {
+    		xPoints.add((int)event.getX());
+    		yPoints.add((int)event.getY());
+    	}
+    	else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+    		xPoints.add((int)event.getX());
+    		yPoints.add((int)event.getY());
+    	}
+    	else if (event.getAction() == MotionEvent.ACTION_UP) {
+    		xPoints.clear();
+    		yPoints.clear();
+    	}
+    	else {
+    		return false;
+    	}
+    	
+    	// see if the point is within the boundary of the image
+    	int width = image.getWidth();
+    	int height = image.getHeight();
+    	float x = event.getX();
+    	float y = event.getY();
+    	// the !killed thing here is to prevent a "double-kill" that could occur
+    	// while the "explosion" image is being shown
+    	if (!killed && x > imagePointX && x < imagePointX + width && y > imagePointY && y < imagePointY + height) {
+    		killed = true;
+    		score++;
+    		((TextView)(GameActivity.instance.getScoreboard())).setText(""+score);
+    	}
+    	
+    	// forces a redraw of the View
+    	invalidate();
+    	
+    	return true;
+    }    
 
-	
-
-	/*
-	 * This method is automatically called when the user touches the screen.
-	 */
-	public boolean onTouchEvent(MotionEvent event) {
-
-		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-			addNewPoint(event);
-		} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-			addNewPoint(event);
-
-		} else if (event.getAction() == MotionEvent.ACTION_UP) {
-			stroke.getPoints().clear();
-		} else {
-			return false;
-		}
-
-		// see if the point is within the boundary of the image
-
-		float x = event.getX();
-		float y = event.getY();
-		// the !killed thing here is to prevent a "double-kill" that could occur
-		// while the "explosion" image is being shown
-		if (!killed && image.isWithinBounds(x, y)) {
-			killed = true;
-			score++;
-			((TextView) (GameActivity.instance.getScoreboard())).setText(""
-					+ score);
-		}
-
-		// forces a redraw of the View
-		invalidate();
-
-		return true;
-	}
-
-	private void drawOnCanvas(Canvas canvas) {
-		canvas.drawBitmap(image.getImage(), image.getImagePoint().x,
-				image.getImagePoint().y, null);
-	}
-	
-	private void addNewPoint(MotionEvent event) {
-		stroke.getPoints().add(
-				new Point((int) event.getX(), (int) event.getY()));
-	}
-  
-	
-	  public int getScore() {
-			return score;
-		}
-
-		public int getyChange() {
-			return yChange;
-		}
-	
+    
+    /*
+     * This inner class is responsible for making the unicorn appear to move.
+     * When "exec" is called on an object of this class, "doInBackground" gets
+     * called in a background thread. It just waits 10ms and then updates the
+     * image's position. Then "onPostExecute" is called.
+     */
+    class BackgroundDrawingTask extends AsyncTask<Integer, Void, Integer> {
+    	
+    	// this method gets run in the background
+    	protected Integer doInBackground(Integer... args) {
+    		try { 
+    			// note: you can change these values to make the unicorn go faster/slower
+    			Thread.sleep(10); 
+    			imagePointX += 10; 
+    			imagePointY += yChange; 
+    		} 
+    		catch (Exception e) { }
+    		// the return value is passed to "onPostExecute" but isn't actually used here
+    		return 1; 
+    	}
+    	
+    	// this method gets run in the UI thread
+    	protected void onPostExecute(Integer result) {
+    		// redraw the View
+    		invalidate();
+    		if (score < 10) {
+    			// need to start a new thread to make the unicorn keep moving
+    			BackgroundDrawingTask task = new BackgroundDrawingTask();
+    			task.execute();
+    		}
+    		else {
+    			// game over, man!
+    			endTime = System.currentTimeMillis();
+    			// these methods are deprecated but it's okay to use them... probably.
+    			GameActivity.instance.removeDialog(1);
+    			GameActivity.instance.showDialog(1);
+    		}
+    	}    	
+    }
 
 }
+

@@ -1,0 +1,12 @@
+int get_temp(char*);
+int init_arduino();
+void* receive_arduino(void*); 
+void send_arduino(char);
+void close_arduino();
+double get_temp_double();
+int double_to_string(char*, double);
+int get_data(char*);
+int get_trend(char*);
+int arduino_error();
+int is_paused();
+int in_help();

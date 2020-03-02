@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.danceforhealth"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    
+    
+
+    <application
+        android:name=".DanceForHealthApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".LoadingScreenActivity"
+            android:label="Dance For Health" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".PrevWorkoutActivity"
+            android:label="@string/title_activity_prev_workout" >
+        </activity>
+        <activity android:name=".DummyActivity" >
+        </activity>
+        <activity android:name=".WorkoutSummary" >
+        </activity>
+        <activity
+            android:name=".GraphActivity"
+            android:label="@string/title_activity_graph" >
+        </activity>
+        <activity
+            android:name=".WeekProgressActivity"
+            android:label="@string/title_activity_week_progress" >
+        </activity>
+        <activity
+            android:name=".MonthProgressActivity"
+            android:label="@string/title_activity_month_progress" >
+        </activity>
+        <activity
+            android:name=".YearProgressActivity"
+            android:label="@string/title_activity_year_progress" >
+        </activity>
+        <activity
+            android:name=".NewWorkoutPageSwipe"
+            android:label="@string/title_activity_new_workout_page_swipe" >
+        </activity>
+        <activity
+            android:name=".FragmentWeightAndStep"
+            android:label="@string/title_activity_fragment_weight_and_step" >
+        </activity>
+        <activity
+            android:name=".CongratulationsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_congratulations"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".WorkoutFeelActivity"
+            android:label="@string/title_activity_workout_feel" >
+        </activity>
+        <activity
+            android:name=".WorkoutTypeActivity"
+            android:label="@string/title_activity_workout_type" >
+        </activity>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name="com.facebook.LoginActivity" >
+        </activity>
+         <activity
+            android:name=".FacebookShareActivity"
+            android:label="@string/title_activity_facebook_share" >
+        </activity>
+        
+         <uses-library android:name="android.test.runner" />
+    </application>
+    
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+    android:targetPackage="com.example.danceforhealth"
+    android:label="unit test" />
+
+</manifest>

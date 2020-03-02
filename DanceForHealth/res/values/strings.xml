@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Dance For Health</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_prev_workout">Previous Workouts</string>
+    <string name="title_activity_new_workout">Create a New Workout</string>
+    <string name="welcome_text_view">Welcome to Dance for Health! </string>
+    <string name="previous_workout_button">Previous Workouts </string>
+    <string name="new_workout_button">New Workout </string>
+    <string name="show_progress_button">See Your Progress </string>
+    <string name="title_activity_heart_rate">Measure Your Heart Rate</string>
+    <string name="title_activity_rating">Rate How You Feel Post-Workout</string>
+    <string name="title_activity_weight_and_steps">Input Your Weight and Steps Taken</string>
+    <string name="title_activity_loading_screen">Loading Screen</string>
+    <string name="rating_header">Please rate how you feel at the moment about the workout you have been doing</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="signup">Sign up</string>
+
+    <string-array name="workouts_array">
+        <item>Dance</item>
+        <item>Run</item>
+        <item>Walk</item>
+        <item>Bike</item>
+        <item>Swim</item>
+    </string-array>
+    <string-array name="items">
+        <item>Account</item>
+        <item>Achievement</item>
+        <item>Sign in</item>
+        <item>Sign up</item>
+        <item>Sign out</item>
+    </string-array>
+
+    <string name="title_activity_heart_rate_two">Measure Your Heart Rate Part Two</string>
+    <string name="title_activity_graph">Progress</string>
+    <string name="title_activity_week_progress">Weekly Progress</string>
+    <string name="title_activity_month_progress">Monthly Progress</string>
+    <string name="title_activity_year_progress">Yearly Progress</string>
+    <string name="question_workout_type_text_view">What type of workout did you do?</string>
+    <string name="question_minutes_text_view">How many minutes did you do it for?</string>
+    <string name="next_page_button">Next Page</string>
+    <string name="title_activity_new_workout_page_swipe">NewWorkoutPageSwipe</string>
+    <string name="title_activity_fragment_weight_and_step">FragmentWeightAndStep</string>
+    <string name="title_activity_congratulations">CongratulationsActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_workout_feel">Workout Feel History</string>
+    <string name="title_activity_workout_type">Workout Type History</string>
+    <string name="drawer_open">open navigation drawer</string>
+    <string name="drawer_close">close navigation drawer</string>
+    <string name="login">Login</string>
+    <string name="cancel">Cancel</string>
+    <string name="app_id">jZaeol2RE6WEDrqyBM67NJD1XC75NgnN2rpwEODE</string>
+    <string name="client_id">wkwG4fjdOMZ1mGpdOXbX5UzhIAb54Qnq4VLv0o2e</string>
+    <string name="facebook_app_id">584249221676498</string>
+    <string name="title_activity_facebook_share">FacebookShareActivity</string>
+</resources>

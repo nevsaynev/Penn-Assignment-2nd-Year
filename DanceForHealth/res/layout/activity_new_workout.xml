@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/heart"
+    android:gravity="center_horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".NewWorkoutActivity" >
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/minutesTextView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/minutesTextView"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/custom_button"
+        android:onClick="onNextButtonClick"
+        android:text="@string/next" />
+
+    <TextView
+        android:id="@+id/workoutTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/workoutTypeSpinner"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:text="@string/question_workout_type_text_view"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editText_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/nextButton"
+        android:layout_alignLeft="@+id/nextButton"
+        android:layout_marginBottom="19dp"
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <Spinner
+        android:id="@+id/workoutTypeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/minutesTextView"
+        android:layout_below="@+id/workoutTypeTextView"
+        android:layout_marginTop="34dp" />
+
+    <TextView
+        android:id="@+id/minutesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText_new"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp"
+        android:text="@string/question_minutes_text_view"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

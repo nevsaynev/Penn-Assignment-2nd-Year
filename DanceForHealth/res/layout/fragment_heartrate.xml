@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:id="@+id/fHeartRate">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/twoTextView_v1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. Start the timer and count how many times your pulse beats until the timer ends" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/timerButton_v1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start Timer"
+                    android:textColor="#ffffff" />
+                
+                <TextView
+	                android:id="@+id/timerTextView_v1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Time left: 15"
+	                android:layout_marginRight="5dp"
+	                android:layout_marginTop="10dp"
+	                android:layout_alignParentRight="true"
+	                android:layout_alignParentTop="true"
+	                android:textSize="20sp" />
+            </RelativeLayout>
+
+            
+            
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/linearLayout1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/threeTextView_v1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. Plug in the number of beats that you counted and then click the button to calculate your heart rate" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/linearLayout2"
+            android:layout_below="@+id/linearLayout2" >
+			<RelativeLayout
+            	android:layout_width="match_parent"
+            	android:layout_height="match_parent" >
+            	<EditText
+	                android:id="@+id/heartRateEditText_v1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:hint="beats number"
+	                android:imeOptions="actionSend"
+	                android:text="0"
+	                android:inputType="number" >
+	
+	                <requestFocus />
+	            </EditText>
+
+	            <Button
+	                android:id="@+id/heartRateButton_v1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignParentRight="true"
+	                android:layout_alignParentTop="true"
+	                android:text="Calculate"
+	                android:textColor="#ffffff" />
+			    
+        	</RelativeLayout>
+            
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/heartRateTextView_v1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\nYour heart rate is: 0\n"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/howToTextView_v1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="How to take your heart rate:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="104dp" >
+
+            <TextView
+                android:id="@+id/textView_v1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="1. Using your index and middle fingers, locate your pulse on your wrist, right below your thumb (you should be able to feel a beat)" />
+
+            <Button
+                android:id="@+id/imageButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="image"
+                android:layout_weight="2"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
